@@ -14,9 +14,8 @@ Nele, ocorre um processo direto de interação entre o banco de dados e a camada
 
 Já o controllers faz o intermédio entre a camada model e a view, sendo uma espécie de ponte entre eles, transferindo dados por meio do processo de requisição e resposta, como é possível ver no código subsequente, com os parâmetros req e res:
 
-    ```javascript
-        const Aluno = require('../models/aluno');
-
+```javascript
+const Aluno = require('../models/aluno');
         exports.index = async (req, res) => {
         const alunos = await Aluno.findAllComCurso();
         res.render('alunos/index', { alunos });
@@ -54,9 +53,7 @@ Já o controllers faz o intermédio entre a camada model e a view, sendo uma esp
         const alunos = await Aluno.findByCurso(curso_id);
         res.json(alunos);
         };
-    ```
-
-
+```
 Por fim, os endpoints consistem em URLs que direcionam a APIs, de modo que sejam realizadas requisições. No contexto desta atividade, verifica-se a presença de endpoints nos arquivos presentes na pasta routes, uma vez que neles há os caminhos para as requisições serem realizadas, especialmente no escopo de aluno, professor e curso.
 
 
