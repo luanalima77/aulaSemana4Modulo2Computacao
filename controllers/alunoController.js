@@ -1,0 +1,39 @@
+const Aluno = require('../models/aluno');
+
+exports.index = async (req, res) => {
+  const alunos = await Aluno.findAllComCurso();
+  res.render('alunos/index', { alunos });
+};
+
+exports.store = async (req, res) => {
+  console.log(req.body); 
+  const { nome, email, curso_id } = req.body;
+  await Aluno.create({ nome, email, curso_id: curso_id || null });
+  res.redirect('/alunos');
+};
+
+exports.update = async (req, res) => {
+  const { id } = req.params;
+  await Aluno.update(id, req.body);
+  res.redirect('/alunos');
+};
+
+exports.destroy = async (req, res) => {
+  const { id } = req.params;
+  await Aluno.delete(id);
+  res.redirect('/alunos');
+};
+
+const Curso = require('../models/curso');
+
+exports.index = async (req, res) => {
+  const alunos = await Aluno.findAllComCurso();
+  const cursos = await Curso.findAll();
+  res.render('alunos/index', { alunos, cursos });
+};
+
+exports.byCurso = async (req, res) => {
+  const { curso_id } = req.params;
+  const alunos = await Aluno.findByCurso(curso_id);
+  res.json(alunos);
+};
