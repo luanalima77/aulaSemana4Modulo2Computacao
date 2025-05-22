@@ -54,8 +54,38 @@ const Aluno = require('../models/aluno');
         res.json(alunos);
         };
 ```
-Por fim, os endpoints consistem em URLs que direcionam a APIs, de modo que sejam realizadas requisições. No contexto desta atividade, verifica-se a presença de endpoints nos arquivos presentes na pasta routes, uma vez que neles há os caminhos para as requisições serem realizadas, especialmente no escopo de aluno, professor e curso.
+Por fim, os endpoints consistem em URLs que direcionam a APIs, de modo que sejam realizadas requisições. No contexto desta atividade, verifica-se a presença de endpoints nos arquivos presentes na pasta routes, uma vez que neles há os caminhos para as requisições serem realizadas, especialmente no escopo de aluno, professor e curso. <br> <br>
 
+
+# Explique com suas palavras o papel de cada camada da arquitetura MVC usada neste projeto
+De modo geral, as três camadas MVC interagem da seguinte forma: <br>
+
+- Model: com os arquivos usuario.js, curso.js e professor.js, essa parte é responsável por interagir com o banco de dados e realizar as requisições a ele;
+- Controller: com os arquivos usuarioController.js, cursoController.js e professorController.js, essa camada realizar as requisições HTTP para o Model, transmitindo as respostas para a View;
+- View: é a camada responsável pela representação visual dos dados. No caso deste projeto, ele tem as views de professor, curso e aluno para mostrar seus respectivos dados.
+
+Além disso, o Model, o View e o Controller interagem por meio dos seguintes códigos:
+- Model com o controller: 
+
+```javascript
+//Chamando o model no controller
+const Aluno = require('../models/aluno');
+const Curso = require('../models/curso');
+```
+
+- Controller com o view: o controller interage com o view a partir das requisições HTTP dos dados.
+<br> <br>
+
+# Como ocorre o envio e o recebimento de dados no formato JSON neste projeto?
+No projeto apresentado, o envio e o recebimento de dados no formato JSON ocorrem por meio das rotas definidas no Express, utilizando os métodos HTTP (GET e POST), como ocorre na seguinte rota (de professores):
+```javascript
+router.post('/edit/:id', controller.update);
+```
+
+Além disso, o Express é capaz de lidar com JSON graças ao middleware express.json(), configurado no arquivo principal da aplicação (app.js). Esse middleware permite que o servidor interprete corretamente os corpos das requisições (req.body) enviados no formato JSON.
+
+# Qual a importância de usar HTML básico com formulários e tabelas para organizar e manipular dados no navegador?
+Essa importância é materializada por meio da visualização clara dos dados que estão sendo utilizados na aplicação.
 
 ## Requisitos
 
