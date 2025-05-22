@@ -9,4 +9,3 @@ router.post('/delete/:id', controller.destroy);
 router.get('/curso/:curso_id', controller.byCurso);
 
 module.exports = router;
-
